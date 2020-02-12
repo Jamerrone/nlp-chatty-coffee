@@ -2,12 +2,12 @@ const manager = require('./manager.js')
 
 exports.handler = async function(event) {
   try {
-    const utterance = event.queryStringParameters.utterance
-    const language = event.queryStringParameters.language
+    const message = decodeURI(event.queryStringParameters.message)
+    const language = event.queryStringParameters.lang
 
     manager.load()
 
-    const nlpResponse = await manager.process(language, utterance)
+    const nlpResponse = await manager.process(language, message)
 
     return {
       statusCode: 200,

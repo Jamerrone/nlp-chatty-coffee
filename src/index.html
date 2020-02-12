@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./main.css" />
+    <title>NLP - Coffee Bot</title>
+  </head>
+  <body>
+    <main class="app">
+      <select name="languages" id="lang-selector">
+        <option value="en">English</option>
+        <option value="nl">Nederlands</option>
+      </select>
+      <section class="chat-wrapper">
+        <ul id="chat"></ul>
+        <form id="form">
+          <input id="input" type="text" placeholder="Message..." autocomplete="off" autofocus />
+          <button>Send</button>
+        </form>
+      </section>
+      <section class="response-wrapper">
+        <pre id="response"></pre>
+        <span>API Response</span>
+      </section>
+      <section class="state-wrapper">
+        <pre id="state"></pre>
+        <span>App State</span>
+      </section>
+      <a href="https://github.com/Jamerrone/nlp-chatty-coffee" class="repo-link" target="_blank"
+        ><img src="./images/GitHub-Mark-32px.png" alt="Link to Codebase."
+      /></a>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>
