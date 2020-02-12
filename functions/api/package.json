@@ -1,0 +1,10 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "api.js",
+  "author": "James Peter Perrone Jefferies <james.p.perrone@protonmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-nlp": "^4.1.0"
+  }
+}
