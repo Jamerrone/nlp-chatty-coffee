@@ -1,0 +1,34 @@
+{
+  "name": "nlp-chatty-coffee",
+  "version": "1.0.0",
+  "description": "NLP.js + Netlify Server Functions Demo.",
+  "scripts": {
+    "postinstall": "npm-recursive-install --rootDir=functions --production",
+    "prebuild": "rm -rf dist/",
+    "build": "cp -r src/ dist/",
+    "dev": "netlify dev",
+    "start": "serve src/ -l 4343"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jamerrone/nlp-chatty-coffee.git"
+  },
+  "keywords": [
+    "nlp",
+    "bot",
+    "chatbot",
+    "javascript",
+    "netlify"
+  ],
+  "author": "James Peter Perrone Jefferies <james.p.perrone@protonmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jamerrone/nlp-chatty-coffee/issues"
+  },
+  "homepage": "https://github.com/Jamerrone/nlp-chatty-coffee#readme",
+  "devDependencies": {
+    "netlify-cli": "2.12.0",
+    "recursive-install": "^1.4.0",
+    "serve": "^11.3.0"
+  }
+}
