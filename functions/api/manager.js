@@ -1,19 +1,79 @@
 const { NlpManager } = require('node-nlp')
 const manager = new NlpManager({ threshold: 0.85, languages: ['en', 'nl'] })
 
-manager.addNamedEntityText('size', 'grande', ['en', 'nl'], ['Grande', 'Large', 'Triple', 'Grote', 'Groot'])
-manager.addNamedEntityText('size', 'short', ['en', 'nl'], ['Short', 'Small', 'Single', 'Kleine', 'Klein'])
-manager.addNamedEntityText('size', 'tall', ['en', 'nl'], ['Tall', 'Medium', 'Double'])
+manager.addNamedEntityText(
+  'size',
+  'grande',
+  ['en', 'nl'],
+  ['Grande', 'Large', 'Triple', 'Grote', 'Groot']
+)
+manager.addNamedEntityText(
+  'size',
+  'short',
+  ['en', 'nl'],
+  ['Short', 'Small', 'Single', 'Kleine', 'Klein']
+)
+manager.addNamedEntityText(
+  'size',
+  'tall',
+  ['en', 'nl'],
+  ['Tall', 'Medium', 'Double']
+)
 
-manager.addNamedEntityText('drink', 'caffeAmericano', ['en', 'nl'], ['Caffè Americano', 'Caffè Americanos', 'Americano', 'Americanos'])
-manager.addNamedEntityText('drink', 'caffèLatte', ['en', 'nl'], ['Caffè Latte', 'Caffè Lattes', 'Latte', 'Lattes'])
-manager.addNamedEntityText('drink', 'caffèMocha', ['en', 'nl'], ['Caffè Mocha', 'Caffè Mochas', 'Mocha', 'Mochas'])
-manager.addNamedEntityText('drink', 'cappuccino', ['en', 'nl'], ['Cappuccino', 'Cappuccinos'])
-manager.addNamedEntityText('drink', 'caramelMacchiato', ['en', 'nl'], ['Caramel Macchiato', 'Caramel Macchiatos'])
-manager.addNamedEntityText('drink', 'espresso', ['en', 'nl'], ['Espresso', 'Espressos'])
-manager.addNamedEntityText('drink', 'espressoConPanna', ['en', 'nl'], ['Espresso Con Panna', 'Espressos Con Panna'])
-manager.addNamedEntityText('drink', 'espressoMacchiato', ['en', 'nl'], ['Espresso Macchiato', 'Espresso Macchiatos', 'Macchiato', 'Macchiatos'])
-manager.addNamedEntityText('drink', 'whiteChocolateMocha', ['en', 'nl'], ['White Chocolate Mocha', 'White Chocolate Mochas'])
+manager.addNamedEntityText(
+  'drink',
+  'caffeAmericano',
+  ['en', 'nl'],
+  ['Caffè Americano', 'Caffè Americanos', 'Americano', 'Americanos']
+)
+manager.addNamedEntityText(
+  'drink',
+  'caffèLatte',
+  ['en', 'nl'],
+  ['Caffè Latte', 'Caffè Lattes', 'Latte', 'Lattes']
+)
+manager.addNamedEntityText(
+  'drink',
+  'caffèMocha',
+  ['en', 'nl'],
+  ['Caffè Mocha', 'Caffè Mochas', 'Mocha', 'Mochas']
+)
+manager.addNamedEntityText(
+  'drink',
+  'cappuccino',
+  ['en', 'nl'],
+  ['Cappuccino', 'Cappuccinos']
+)
+manager.addNamedEntityText(
+  'drink',
+  'caramelMacchiato',
+  ['en', 'nl'],
+  ['Caramel Macchiato', 'Caramel Macchiatos']
+)
+manager.addNamedEntityText(
+  'drink',
+  'espresso',
+  ['en', 'nl'],
+  ['Espresso', 'Espressos']
+)
+manager.addNamedEntityText(
+  'drink',
+  'espressoConPanna',
+  ['en', 'nl'],
+  ['Espresso Con Panna', 'Espressos Con Panna']
+)
+manager.addNamedEntityText(
+  'drink',
+  'espressoMacchiato',
+  ['en', 'nl'],
+  ['Espresso Macchiato', 'Espresso Macchiatos', 'Macchiato', 'Macchiatos']
+)
+manager.addNamedEntityText(
+  'drink',
+  'whiteChocolateMocha',
+  ['en', 'nl'],
+  ['White Chocolate Mocha', 'White Chocolate Mochas']
+)
 
 manager.addDocument('en', '%drink%.', 'Order')
 manager.addDocument('en', '%size% %drink%.', 'Order')
@@ -56,8 +116,16 @@ manager.addDocument('en', '%size%', 'Order.Size')
 manager.addDocument('en', 'A %size% one.', 'Order.Size')
 manager.addDocument('nl', '%size%', 'Order.Size')
 manager.addDocument('nl', 'Een %size%.', 'Order.Size')
-manager.addAnswer('en', 'Order.Size', 'Sorry, I could not understand, please rephrase your previous message.')
-manager.addAnswer('nl', 'Order.Size', 'Sorry, ik kon het niet begrijpen, herformuleer je vorige bericht.')
+manager.addAnswer(
+  'en',
+  'Order.Size',
+  'Sorry, I could not understand, please rephrase your previous message.'
+)
+manager.addAnswer(
+  'nl',
+  'Order.Size',
+  'Sorry, ik kon het niet begrijpen, herformuleer je vorige bericht.'
+)
 
 manager.addDocument('en', 'Clear order.', 'Order.Reset')
 manager.addDocument('en', 'Reset.', 'Order.Reset')
@@ -67,10 +135,26 @@ manager.addDocument('nl', 'Begin opnieuw.', 'Order.Reset')
 manager.addDocument('nl', 'Bestelling wissen.', 'Order.Reset')
 manager.addDocument('nl', 'Herstarten.', 'Order.Reset')
 manager.addDocument('nl', 'Reset.', 'Order.Reset')
-manager.addAnswer('en', 'Order.Reset', "Let's start over. What would you like to order?")
-manager.addAnswer('nl', 'Order.Reset', 'Laten we opnieuw beginnen. Wat zou u willen bestellen?')
+manager.addAnswer(
+  'en',
+  'Order.Reset',
+  "Let's start over. What would you like to order?"
+)
+manager.addAnswer(
+  'nl',
+  'Order.Reset',
+  'Laten we opnieuw beginnen. Wat zou u willen bestellen?'
+)
 
-manager.addAnswer('en', 'None', 'Sorry, I could not understand, please rephrase your previous message.')
-manager.addAnswer('nl', 'None', 'Sorry, ik kon het niet begrijpen, herformuleer je vorige bericht.')
+manager.addAnswer(
+  'en',
+  'None',
+  'Sorry, I could not understand, please rephrase your previous message.'
+)
+manager.addAnswer(
+  'nl',
+  'None',
+  'Sorry, ik kon het niet begrijpen, herformuleer je vorige bericht.'
+)
 
 module.exports = manager
