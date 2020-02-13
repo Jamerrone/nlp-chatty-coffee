@@ -26,7 +26,9 @@ const prices = {
 
 function calculateTotalOrderPrice() {
   return parseFloat(
-    appState.order.drinks.reduce((price, drink) => price + drink.price, 0).toFixed(2)
+    appState.order.drinks
+      .reduce((price, drink) => price + drink.price, 0)
+      .toFixed(2)
   )
 }
 
@@ -53,12 +55,16 @@ function generateOrderStatusMessage() {
 
   if (appState.language === 'en') {
     message = 'Here is what I have for your order.<br>'
-    appState.order.drinks.forEach(d => (message += `<br>- ${d.amount}x ${d.size} ${d.name}`))
+    appState.order.drinks.forEach(
+      d => (message += `<br>- ${d.amount}x ${d.size} ${d.name}`)
+    )
     message += `<br><br>For a total of: $${appState.order.price}`
     message += `<button>Place order</button>`
   } else if (appState.language === 'nl') {
     message = 'Hier is wat ik heb voor uw bestelling.<br>'
-    appState.order.drinks.forEach(d => (message += `<br>- ${d.amount}x ${d.size} ${d.name}`))
+    appState.order.drinks.forEach(
+      d => (message += `<br>- ${d.amount}x ${d.size} ${d.name}`)
+    )
     message += `<br><br>Voor een totaal van: $${appState.order.price}`
     message += `<button>Plaats bestelling</button>`
   }
@@ -78,7 +84,11 @@ form.addEventListener('submit', e => {
 
   if (input.value) {
     postMessage(input.value, false)
-    fetch(`/.netlify/functions/api?lang=${appState.language}&message=${encodeURI(input.value)}`)
+    fetch(
+      `/.netlify/functions/api?lang=${appState.language}&message=${encodeURI(
+        input.value
+      )}`
+    )
       .then(response => response.json())
       .then(json => {
         if (json.intent === 'Order.Reset') {
@@ -86,7 +96,9 @@ form.addEventListener('submit', e => {
           postMessage(json.answer)
         } else if (json.intent === 'Order.Size' && appState.hasRequestedSize) {
           const drink = appState.currentDrink
-          const { resolution, option } = json.entities.find(entity => entity.entity === 'size')
+          const { resolution, option } = json.entities.find(
+            entity => entity.entity === 'size'
+          )
 
           drink.size = resolution ? resolution.value : option
 
@@ -154,7 +166,9 @@ function changeLanguage() {
   state.textContent = JSON.stringify(appState, null, 2)
   appState.language === 'en'
     ? postMessage(`Welcome to <strong>Coffee Bot</strong>, how can I help you?`)
-    : postMessage(`Welkom bij <strong>Coffee Bot</strong>, hoe kan ik u helpen?`)
+    : postMessage(
+        `Welkom bij <strong>Coffee Bot</strong>, hoe kan ik u helpen?`
+      )
 }
 
 langSelector.addEventListener('change', changeLanguage)
