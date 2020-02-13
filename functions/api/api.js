@@ -5,7 +5,7 @@ exports.handler = async function(event) {
     const message = decodeURI(event.queryStringParameters.message)
     const language = event.queryStringParameters.lang
 
-    manager.load()
+    manager.load('./model.nlp')
 
     const nlpResponse = await manager.process(language, message)
 
